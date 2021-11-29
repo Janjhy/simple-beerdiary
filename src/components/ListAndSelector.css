@@ -1,0 +1,12 @@
+.List {
+    overflow: auto;
+    /*height: 100%;*/
+    padding-top: 10px;
+    flex: 1;
+}
+
+.List-And-Selector {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}

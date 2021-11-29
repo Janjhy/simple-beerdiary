@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authenticating.</title>
+</head>
+<body>
+<noscript>
+    You need to enable JavaScript to run this app.
+</noscript>
+<script src="oidc-client.min.js"></script>
+<script>
+  let mgr = new Oidc.UserManager({response_mode : "query"});
+  mgr.signinRedirectCallback().then(() => {
+    window.location = "index.html";
+  }, error => {
+    console.error(error);
+  });
+</script>
+</body>
+</html>

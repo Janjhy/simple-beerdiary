@@ -1,0 +1,17 @@
+.Add-Form {
+    display: flex;
+    justify-content: space-around;
+    color: white;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-top: 25px;
+}
+
+.Beer-Text {
+    resize: horizontal;
+}
+
+.Submit-Btn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
