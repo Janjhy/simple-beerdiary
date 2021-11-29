@@ -33,6 +33,7 @@ const App = () => {
 
   useEffect(() => {
     getUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const login = () => {
@@ -115,19 +116,30 @@ const App = () => {
     }
   };
 
-  useEffect(async () => {
+  useEffect(  () => {
     let isMounted = true;
-    if (user && update) {
-      console.log(isMounted);
-      await apiService.getBeers()
-          .then(res => {if (isMounted) setBeers(res.data);});
-      await apiService.getReviews()
-          .then(res => {if (isMounted) setReviews(res.data);});
-      await apiService.getUserBeers()
-          .then(res => {if (isMounted) setUserBeers(res.data); });
-      setUpdate(false);
+    const doAsync = async () => {
+      if (user && update) {
+        await apiService.getBeers()
+            .then(res => {
+              if (isMounted) setBeers(res.data);
+            });
+        await apiService.getReviews()
+            .then(res => {
+              if (isMounted) setReviews(res.data);
+            });
+        await apiService.getUserBeers()
+            .then(res => {
+              if (isMounted) setUserBeers(res.data);
+            });
+        setUpdate(false);
+      }
     }
-    return () => { isMounted = false; };
+    doAsync().then();
+    return () => {
+      isMounted = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, update]);
 
   return (
